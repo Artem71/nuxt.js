@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>This is users page</h1>
+    <h1>{{pageTitle}}</h1>
 
     <ul>
       <li
@@ -15,8 +15,17 @@
 
 <script>
 export default {
+  asyncData() {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve({
+          users: [1, 2, 3, 4, 5]
+        })
+      }, 3000)
+    })
+  },
   data: () => ({
-    users: [1, 2, 3, 4, 5]
+    pageTitle: 'This is users page'
   }),
   methods: {
     goTo(user) {
