@@ -12,8 +12,12 @@ export default {
     return /^\d+$/.test(params.id)
   },
   async asyncData({params, error, $axios}) {
-    const user = await $axios.$get(`https://jsonplaceholder.typicode.com/users/${params.id}`)
+    try {
+      const user = await $axios.$get(`https://jsonplaceholder.typicode.com/users/${params.id}`)
     return {user}
+    } catch (e) {
+      error(e)
+    }
   }
 }
 </script>
