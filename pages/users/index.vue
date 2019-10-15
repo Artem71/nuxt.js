@@ -15,10 +15,11 @@
 
 <script>
 export default {
-  async asyncData({store, error}) {
+  async fetch({store, error}) {
     try {
-      const users = await store.dispatch('users/fetchUsers')
-      return {users}
+      if (store.getters['users/users'].length === 0) {
+        await store.dispatch('users/fetchUsers')
+      }
     } catch (e) {
       error(e)
     }
@@ -26,6 +27,11 @@ export default {
   data() {
     return {
       pageTitle: 'This is users page'
+    }
+  },
+  computed: {
+    users() {
+      return this.$store.getters['users/users']
     }
   },
   methods: {
