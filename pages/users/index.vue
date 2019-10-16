@@ -15,15 +15,15 @@
 
 <script>
 export default {
-  async fetch({store, error}) {
-    try {
-      if (store.getters['users/users'].length === 0) {
-        await store.dispatch('users/fetchUsers')
-      }
-    } catch (e) {
-      error(e)
-    }
-  },
+  // async fetch({store, error}) {
+  //   try {
+  //     if (store.getters['users/users'].length === 0) {
+  //       await store.dispatch('users/fetchUsers')
+  //     }
+  //   } catch (e) {
+  //     error(e)
+  //   }
+  // },
   data() {
     return {
       pageTitle: 'This is users page'
